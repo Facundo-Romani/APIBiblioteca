@@ -24,11 +24,11 @@ namespace APIBiblioteca.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Libro> GetId([FromBody] LibroDTO libroDTO, int id)
+        public ActionResult<Libro> GetId(int id)
         {
             var libroId = _context.Libro.Select(l => l.Id == id).FirstOrDefault();
 
-            return Ok(libroDTO);
+            return Ok(libroId);
         }
 
         [HttpPost]
