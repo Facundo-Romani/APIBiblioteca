@@ -5,6 +5,7 @@ namespace APIBiblioteca.Entities
 {
     public class Libro
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -12,8 +13,15 @@ namespace APIBiblioteca.Entities
 
         [Required]
         public int AutorId { get; set; }
-        
-        [ForeignKey("AutorId")]
+
         public Autor Autor { get; set; }
+    }
+
+
+    public class LibroDTO
+    {
+        public string Titulo { get; set; }
+        public int AutorId { get; set; }
+
     }
 }

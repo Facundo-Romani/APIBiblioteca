@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIBiblioteca.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221220215813_ApiBiblioteca")]
-    partial class ApiBiblioteca
+    [Migration("20221221225223_APIBiblioteca")]
+    partial class APIBiblioteca
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

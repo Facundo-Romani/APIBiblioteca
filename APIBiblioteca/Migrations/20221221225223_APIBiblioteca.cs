@@ -5,7 +5,7 @@
 namespace APIBiblioteca.Migrations
 {
     /// <inheritdoc />
-    public partial class ApiBiblioteca : Migration
+    public partial class APIBiblioteca : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
