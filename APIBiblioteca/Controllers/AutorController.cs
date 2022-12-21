@@ -18,11 +18,13 @@ namespace APIBiblioteca.Controllers
             _context = context;
         }
 
+
         [HttpGet]
         public ActionResult<IEnumerable<Autor>> getAll()
         {
             return _context.Autor.Include(x => x.Libros).ToList();
         }
+
 
         [HttpGet("{id}")]
         public ActionResult<Autor> getId(int id)
