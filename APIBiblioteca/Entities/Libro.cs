@@ -22,6 +22,5 @@ namespace APIBiblioteca.Entities
     {
         public string Titulo { get; set; }
         public int AutorId { get; set; }
-
     }
 }

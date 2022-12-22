@@ -60,5 +60,43 @@ namespace APIBiblioteca.Controllers
                 throw ex;
             }
         }
+
+        [HttpPut("{id}")]
+        public ActionResult Update(LibroDTO libroDTO , int id) 
+        {
+            var libroSeleccionado = _context.Libro.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
+
+            if (id != 0)
+            {
+                libroSeleccionado.Titulo = libroDTO.Titulo;
+
+                _context.Libro.Update(libroSeleccionado);
+                _context.SaveChanges();
+
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Libro no Existe");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id) 
+        {
+            var libroSeleccionado = _context.Libro.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
+
+            if (id == libroSeleccionado.Id) 
+            {
+                _context.Remove(libroSeleccionado);
+                _context.SaveChanges();
+
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("No existe");
+            }
+        }
     }
 }

@@ -18,22 +18,19 @@ namespace APIBiblioteca.Controllers
             _context = context;
         }
 
-
         [HttpGet]
-        public ActionResult<IEnumerable<Autor>> getAll()
+        public ActionResult<IEnumerable<Autor>> GetAll()
         {
-            return _context.Autor.Include(x => x.Libros).ToList();
+            return _context.Autor.Include(a => a.Libros).ToList();
         }
 
-
         [HttpGet("{id}")]
-        public ActionResult<Autor> getId(int id)
+        public ActionResult<Autor> GetId(int id)
         {
             var autorId = _context.Autor.Select(x => x.Id == id).FirstOrDefault();
 
             return Ok(autorId);
         }
-
 
         [HttpPost]
         public ActionResult Post([FromBody] AutorDTO autorDTO)
@@ -49,7 +46,6 @@ namespace APIBiblioteca.Controllers
             return Ok(nuevoAutor);
         }
 
-
         [HttpPut("{id}")]
         public ActionResult Put([FromBody] AutorDTO autorDTO, int id)
         {
@@ -60,7 +56,7 @@ namespace APIBiblioteca.Controllers
                 autor.Nombre = autorDTO.Nombre;
 
                 _context.Autor.Update(autor);
-                _context.SaveChanges(); 
+                _context.SaveChanges();
 
                 return Ok();
             }
@@ -70,21 +66,20 @@ namespace APIBiblioteca.Controllers
             }
         }
 
-
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             var autor = _context.Autor.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
 
-            if (id != 0) 
-            { 
-                _context.Autor.Remove(autor);   
+            if (id == autor.Id)
+            {
+                _context.Autor.Remove(autor);
                 _context.SaveChanges();
                 return Ok();
             }
             else
-            { 
-                return BadRequest(); 
+            {
+                return BadRequest();
             }
         }
     }
