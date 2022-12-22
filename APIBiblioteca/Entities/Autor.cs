@@ -15,8 +15,6 @@ namespace APIBiblioteca.Entities
 
     public class AutorDTO
     {
-
         public string Nombre { get; set; }
-
     }
 }
