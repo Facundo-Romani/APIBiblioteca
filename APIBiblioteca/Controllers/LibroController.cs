@@ -34,35 +34,29 @@ namespace APIBiblioteca.Controllers
         [HttpPost]
         public ActionResult AddLibro([FromBody] LibroDTO libroDTO)
         {
-            try
-            {   
-                if(libroDTO == null)
-                {
-                    var libroNuevo = new Libro()
-                    {
-                        Titulo = libroDTO.Titulo,
-                        AutorId = libroDTO.AutorId,
-                    };
 
-                    _context.Libro.Add(libroNuevo);
-
-                    _context.SaveChanges();
-
-                    return Ok(libroNuevo);
-                }
-                else
-                {
-                    return BadRequest("is not null");
-                }     
-            }
-            catch (Exception ex)
+            if (libroDTO != null)
             {
-                throw ex;
+                var libroNuevo = new Libro()
+                {
+                    Titulo = libroDTO.Titulo,
+                    AutorId = libroDTO.AutorId,
+                };
+
+                _context.Libro.Add(libroNuevo);
+
+                _context.SaveChanges();
+
+                return Ok(libroNuevo);
+            }
+            else
+            {
+                return BadRequest();
             }
         }
 
         [HttpPut("{id}")]
-        public ActionResult Update(LibroDTO libroDTO , int id) 
+        public ActionResult Update(LibroDTO libroDTO, int id)
         {
             var libroSeleccionado = _context.Libro.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
 
@@ -82,11 +76,11 @@ namespace APIBiblioteca.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id) 
+        public ActionResult Delete(int id)
         {
             var libroSeleccionado = _context.Libro.Where(x => x.Id == id).Select(x => x).FirstOrDefault();
 
-            if (id == libroSeleccionado.Id) 
+            if (id == libroSeleccionado.Id)
             {
                 _context.Remove(libroSeleccionado);
                 _context.SaveChanges();

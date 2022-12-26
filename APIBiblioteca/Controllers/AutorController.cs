@@ -56,7 +56,7 @@ namespace APIBiblioteca.Controllers
                 autor.Nombre = autorDTO.Nombre;
 
                 _context.Autor.Update(autor);
-                _context.SaveChanges();
+                _context.SaveChanges(); 
 
                 return Ok();
             }
